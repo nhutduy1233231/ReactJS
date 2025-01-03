@@ -22,6 +22,7 @@ Lệnh cài package cơ bản
 1. npm init -y
 2. Cài đặt các dependencies cơ bản
     npm install react react-dom 
+    npm install --save-dev @types/react @types/react-dom
 3. npm install typescript --save-dev
 4. Cài đặt Webpack và các plugin
     npm install webpack webpack-cli webpack-dev-server --save-dev
@@ -32,9 +33,5 @@ Lệnh cài package cơ bản
 7. Cài đặt các plugin và cấu hình hỗ trợ TypeScript
     npm install html-webpack-plugin --save-dev
 
-npm install --save-dev @types/react @types/react-dom
 
-Cấu hình typescript
-
-Cấu hình Webpack
-    
+ESLint
