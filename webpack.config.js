@@ -53,6 +53,10 @@ module.exports = (env, argv) => {
             {
               loader: 'sass-loader', // biên dịch sass sang css
               options: { sourceMap: !isProduction }
+            },
+            {
+              loader: 'postcss-loader',
+              options: { sourceMap: !isProduction }
             }
           ]
         },

@@ -6,6 +6,7 @@ const App: FC = () => {
     <div>
       <h1>{fullname}</h1>
       <h2>Bài viết được viết tại blog {process.env.HOST}</h2>
+      <div className='text-3xl font-bold underline'>Hello world!</div>
     </div>
   )
 }
