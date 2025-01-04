@@ -1,16 +1,22 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
-import PublicLayout from '~/app/layout/public'
+import PrivateLayout from '~/app/layout/private'
+import { envSettings } from '~/app/settings'
+
+const ExampleRouter = [
+  { path: '/', element: <div>index</div> },
+  { path: '/test', element: <div>Test</div> },
+  { path: '*', element: <div>Not Found</div> }
+]
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Router>
+    <Router basename={envSettings.baseUrl}>
       <Routes>
-        <Route path='/' element={<PublicLayout />}>
-          <Route path={'/'} element={<>index jsx</>} />
-          <Route path={'/test'} element={<>test jsx</>} />
-        </Route>
+        {ExampleRouter.map((el) => {
+          return <Route key={el.path} path={el.path} element={<PrivateLayout>{el.element}</PrivateLayout>} />
+        })}
       </Routes>
     </Router>
   </React.StrictMode>
