@@ -10,6 +10,7 @@ const App: FC = () => {
       <Button variant='outline'>Button</Button>
       <br />
       <ModeToggle />
+      <div className='flex text-[22px] text-primary'>Node</div>
     </div>
   )
 }

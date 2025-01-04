@@ -1,13 +1,11 @@
-import { Link, Outlet } from 'react-router-dom'
+import StyledProvider from '@/app/ThemeProvider'
+import { ReactNode } from 'react'
 
-const PublicLayout = () => {
+const PublicLayout = (props: { children: ReactNode }) => {
   return (
-    <div className=''>
-      <Link to={'/'}>Home</Link>
-      <Link to={'/test'}>Test</Link>
-      <h1>Public Layout</h1>
-      <Outlet />
-    </div>
+    <StyledProvider>
+      <div className='w-full max-w-[1140px] mx-auto'>{props.children}</div>
+    </StyledProvider>
   )
 }
 
