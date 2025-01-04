@@ -2,9 +2,11 @@
 const path = require('path')
 module.exports = {
   extends: [
+    // Chúng ta sẽ dùng các rule mặc định từ các plugin mà chúng ta đã cài.
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
+    'plugin:import/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:@typescript-eslint/recommended',
     // Disable các rule mà eslint xung đột với prettier.
@@ -33,10 +35,6 @@ module.exports = {
     node: true
   },
   rules: {
-    '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/ban-types': 'off',
-    'jsx-a11y/click-events-have-key-events': 'off',
-    'jsx-a11y/no-static-element-interactions': 'off',
     // Tắt rule yêu cầu import React trong file jsx
     'react/react-in-jsx-scope': 'off',
     // Cảnh báo khi thẻ <a target='_blank'> mà không có rel="noreferrer"
