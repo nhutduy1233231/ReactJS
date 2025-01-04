@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import App from '~/App'
 import PrivateLayout from '~/app/layout/private'
 import { envSettings } from '~/app/settings'
 
 const ExampleRouter = [
-  { path: '/', element: <div>index</div> },
+  { path: '/', element: <App /> },
   { path: '/test', element: <div>Test</div> },
   { path: '*', element: <div>Not Found</div> }
 ]
