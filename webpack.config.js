@@ -29,7 +29,7 @@ module.exports = (env, argv) => {
         // để khi import cho ngắn gọn
         // Ví dụ: import Login from '@pages/Login'
         // Thay vì: import Login from '../pages/Login' chẳng hạn
-        '@pages': path.resolve(__dirname, './src/pages')
+        '~': path.resolve(__dirname, './src')
       }
     },
     // File đầu vào cho webpack, file này thường là file import mọi file khác
@@ -87,6 +87,12 @@ module.exports = (env, argv) => {
       publicPath: '/'
     },
     devServer: {
+      client: {
+        overlay: {
+          errors: false, // Hiển thị lỗi
+          warnings: false // Không hiển thị cảnh báo
+        }
+      },
       hot: true, // enable Hot Module Replacement, kiểu như reload nhanh
       port: 3000, // Chạy port 3000 khi dev
       historyApiFallback: true, // Phải set true nếu không khi bạn dùng lazyload module React thì sẽ gặp lỗi không load được file.
