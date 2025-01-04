@@ -13,13 +13,13 @@ export const LonginContainer = () => {
         </div>
         <h2 className='login__title'>Login Form</h2>
         <div className='login__input__group'>
-          <Input placeholder='UserName' />
+          <Input type='email' placeholder='Email' />
           <Input type='password' placeholder='Password' />
           <div className='login__forgot-password'>
             <a href='#'>Forgot Password </a>/<a href='#2'> Register</a>
           </div>
         </div>
-        <Button className='login__btn--submit'>Get Stated</Button>
+        <Button className='login__btn--submit'>Login</Button>
       </div>
     </div>
   )
