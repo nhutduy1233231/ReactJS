@@ -3,9 +3,9 @@ import './index.css'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
-import App from '~/App'
-import PrivateLayout from '~/app/layout/private'
-import { envSettings } from '~/app/settings'
+import App from '@/App'
+import PrivateLayout from '@/app/layout/private'
+import { envSettings } from '@/app/settings'
 
 const ExampleRouter = [
   { path: '/', element: <App /> },
