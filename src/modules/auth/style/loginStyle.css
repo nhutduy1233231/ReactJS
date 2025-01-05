@@ -1,17 +1,3 @@
-.login__title {
-  @apply text-center text-[20px] text-primary;
-  @apply py-[24px];
-}
-
-.login__box {
-  @apply max-w-[100%] xs:max-w-[460px] sm:max-w-[510px];
-  @apply mx-[10px] xs:mx-auto;
-  @apply border-[1px] rounded-[8px];
-  @apply p-[24px];
-
-  @apply relative;
-}
-
 .login__icon__group {
   @apply bg-[var(--primary)];
   @apply w-[80px] h-[80px] rounded-[50%];
@@ -24,17 +10,6 @@
   @apply text-[var(--background)];
 }
 
-.login__input__group {
-  @apply grid grid-cols-1 gap-[12px];
-  @apply mb-[20px];
-}
-
 .login__forgot-password {
   @apply text-right text-primary text-[20px];
-}
-
-.login__btn--submit {
-  @apply absolute bottom-[-32px] left-[50%];
-  @apply transform -translate-x-1/2;
-  @apply w-[calc(100%-60px)] xs:w-full xs:max-w-[320px] h-[64px];
 }
