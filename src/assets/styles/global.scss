@@ -1,12 +1,6 @@
 :root {
-  --background: #ffffff;
-  --foreground: #1f1f56;
-  --border: #a1b9d1;
-  --input: #a1b9d1;
-  --primary: #1f1f56;
-  --primary-foreground: #c6d9eb;
-  --secondary: #d9e6f2;
-  --secondary-foreground: #1f1f56;
+  --primary: '#0909DB';
+  --placeholder: #f8f8f8;
 }
 
 * {
@@ -17,4 +11,8 @@ html {
   font-size: 62.5%;
   line-height: 1.6rem;
   box-sizing: border-box;
+}
+
+.ant-input::placeholder {
+  color: var(--placeholder);
 }
