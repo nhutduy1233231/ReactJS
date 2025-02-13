@@ -1,6 +1,6 @@
 import 'normalize.css'
 import '~styles/global.scss'
-import '~styles/tailwind.css'
+import '~styles/tailwind.scss'
 
 import React from 'react'
 import ReactDOM from 'react-dom/client'

@@ -56,7 +56,7 @@ module.exports = (env, argv) => {
               options: { sourceMap: !isProduction }
             },
             {
-              loader: 'postcss-loader', // biên dịch cho tailwind
+              loader: 'postcss-loader', // biên dịch cho
               options: { sourceMap: !isProduction }
             }
           ]
