@@ -1,7 +1,7 @@
 import 'normalize.css'
 import '~styles/global.scss'
+import '~styles/tailwind.css'
 
-import { Input } from 'antd'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { Route, BrowserRouter as Router, Routes } from 'react-router'
@@ -14,7 +14,8 @@ const EXAMPLE_ROUTER = [
     path: '/',
     element: (
       <PrivateLayout>
-        <Input placeholder='input placeholder' />
+        <h1 className='text-3xl font-bold underline text-[#fff000]'>Hello world!</h1>
+        <p className='text-blue-600 dark:text-sky-400'>The quick brown fox...</p>
       </PrivateLayout>
     )
   },

@@ -54,11 +54,11 @@ module.exports = (env, argv) => {
             {
               loader: 'sass-loader', // biên dịch sass sang css
               options: { sourceMap: !isProduction }
+            },
+            {
+              loader: 'postcss-loader', // biên dịch cho tailwind
+              options: { sourceMap: !isProduction }
             }
-            // {
-            //   loader: 'postcss-loader',
-            //   options: { sourceMap: !isProduction }
-            // }
           ]
         },
         {
@@ -66,9 +66,7 @@ module.exports = (env, argv) => {
           use: [
             {
               loader: 'file-loader',
-              options: {
-                name: isProduction ? 'static/media/[name].[contenthash:6].[ext]' : '[path][name].[ext]'
-              }
+              options: { name: isProduction ? 'static/media/[name].[contenthash:6].[ext]' : '[path][name].[ext]' }
             }
           ]
         },
@@ -77,9 +75,7 @@ module.exports = (env, argv) => {
           use: [
             {
               loader: 'file-loader',
-              options: {
-                name: isProduction ? 'static/fonts/[name].[ext]' : '[path][name].[ext]'
-              }
+              options: { name: isProduction ? 'static/fonts/[name].[ext]' : '[path][name].[ext]' }
             }
           ]
         }
@@ -111,9 +107,7 @@ module.exports = (env, argv) => {
     devtool: isProduction ? false : 'source-map',
     plugins: [
       // Đưa css ra thành một file .css riêng biệt thay vì bỏ vào file .js
-      new MiniCssExtractPlugin({
-        filename: isProduction ? 'static/css/[name].[contenthash:6].css' : '[name].css'
-      }),
+      new MiniCssExtractPlugin({ filename: isProduction ? 'static/css/[name].[contenthash:6].css' : '[name].css' }),
       // Dùng biến môi trường env trong dự án
       new Dotenv(),
       // Copy mọi files trong folder public trừ file index.html
@@ -130,14 +124,9 @@ module.exports = (env, argv) => {
       }),
 
       // Plugin hỗ trợ thêm thẻ style và script vào index.html
-      new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, 'public', 'index.html'),
-        filename: 'index.html'
-      }),
+      new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'public', 'index.html'), filename: 'index.html' }),
       // Thêm eslint cho webpack
-      new ESLintPlugin({
-        extensions: ['.tsx', '.ts', '.js', '.jsx']
-      })
+      new ESLintPlugin({ extensions: ['.tsx', '.ts', '.js', '.jsx'] })
     ]
   }
 
@@ -147,10 +136,7 @@ module.exports = (env, argv) => {
       ...config.plugins,
       new webpack.ProgressPlugin(), // Hiển thị % khi build
       // Nén brotli css và js nhưng không hiểu sao chỉ có js được nén 🥲
-      new CompressionPlugin({
-        test: /\.(css|js)$/,
-        algorithm: 'brotliCompress'
-      }),
+      new CompressionPlugin({ test: /\.(css|js)$/, algorithm: 'brotliCompress' }),
       new CleanWebpackPlugin() // Dọn dẹp thư mục build trước đó để chuẩn bị cho bản build hiện tại
     ]
     if (isAnalyze) {
