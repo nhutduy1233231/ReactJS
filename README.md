@@ -1,3 +1,12 @@
+# config only LF
+
+1. git config --global core.autocrlf false
+2. git config --global core.eol lf
+3. git rm -rf --cached
+4. git reset --hard HEAD
+
+Settings => Import Module Specifier => non-relative
+
 # config init package
 
 1.  yarn init --yes
