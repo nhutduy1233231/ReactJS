@@ -6,9 +6,9 @@ import { iconUtils } from '~/utils/iconUtils'
 const SiderComp = () => {
   return (
     <div className='sider'>
-      {arrays.map((el, index) => {
+      {arrays.map((el) => {
         return (
-          <React.Fragment key={index}>
+          <React.Fragment key={el.id}>
             <SiderItems item={el} />
           </React.Fragment>
         )
@@ -22,26 +22,27 @@ export default SiderComp
 const arrays: SiderItemType[] = [
   {
     id: '1',
-    icons: iconUtils.home,
-    title: 'Home'
+    icon: iconUtils.chart,
+    title: 'Dashboard'
   },
   {
     id: '2',
     title: 'Product',
-    children: [
+    icon: iconUtils.home,
+    items: [
       {
         id: '3',
-        icons: iconUtils.home,
+        icon: iconUtils.mail,
         title: 'Product 1'
       },
       {
         id: '4',
-        icons: iconUtils.home,
+        icon: iconUtils.calendar,
         title: 'Product 2',
-        children: [
+        items: [
           {
             id: '5',
-            icons: iconUtils.home,
+            icon: iconUtils.image,
             title: 'Product 3'
           }
         ]

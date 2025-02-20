@@ -48,6 +48,7 @@ module.exports = {
     // Tăng cường một số rule prettier (copy từ file .prettierrc qua)
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/no-noninteractive-element-interactions': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
     'prettier/prettier': [
       'warn',
       {

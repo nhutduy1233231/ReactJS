@@ -2,35 +2,30 @@
   @apply h-screen !bg-[var(--sider-bg)] w-[240px];
   @apply text-[var(--sider-color)] text-[1.6rem];
 
-  .sider__title,
   .sider__item {
     @apply min-h-[4rem] flex cursor-pointer;
     @apply items-center;
-  }
 
-  .sider__title {
-    @apply ml-[1rem];
-  }
-
-  .sider__item {
     .sider__icon {
       @apply w-[2rem] h-[2rem] mx-[1rem];
     }
-    .sider__content {
-      @apply flex-1 break-all;
+    .sider__title {
+      @apply ml-[1rem] flex-1 break-all;
     }
   }
-
   .sider__items {
-    @apply relative;
-    .sider__item {
-      display: none;
-      transform: translateY(-20px);
-      animation: slideDown 0.1s ease-out forwards;
-      &.sider__item--show {
-        display: flex;
-        opacity: 1;
-        transform: translateY(0);
+    .sider__list {
+      @apply hidden;
+      .sider__item {
+        transform: translateY(-20px);
+        animation: slideDown 0.5s ease-out forwards;
+      }
+      &.sider__list--show {
+        @apply block;
+        .sider__item {
+          @apply flex opacity-[1];
+          transform: translateY(0);
+        }
       }
     }
   }
