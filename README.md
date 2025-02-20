@@ -5,7 +5,11 @@
 3. git rm -rf --cached
 4. git reset --hard HEAD
 
+git ls-files --eol
+
 Settings => Import Module Specifier => non-relative
+
+# unknownAtRules
 
 # config init package
 
