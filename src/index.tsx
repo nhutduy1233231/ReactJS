@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom/client'
 import { Route, BrowserRouter as Router, Routes } from 'react-router'
 import ConfigProvider from '~/app/layout/configProvider'
 import PrivateLayout from '~/app/layout/private'
-import { envSettings } from '~/helper/settings'
+import { envSettings } from './constants/enviroment'
 
 const EXAMPLE_ROUTER = [
   {

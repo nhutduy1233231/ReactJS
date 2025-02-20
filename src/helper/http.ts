@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { envSettings } from '~/helper/settings'
+import { envSettings } from '~/constants/enviroment'
 
 type CustomOptions = Omit<RequestInit, 'method'> & { baseUrl?: string | undefined }
 
