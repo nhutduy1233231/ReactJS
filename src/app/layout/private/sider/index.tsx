@@ -37,7 +37,14 @@ const arrays: SiderItemType[] = [
       {
         id: '4',
         icons: iconUtils.home,
-        title: 'Product 2'
+        title: 'Product 2',
+        children: [
+          {
+            id: '5',
+            icons: iconUtils.home,
+            title: 'Product 3'
+          }
+        ]
       }
     ]
   }

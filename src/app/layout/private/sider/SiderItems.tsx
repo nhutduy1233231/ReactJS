@@ -9,10 +9,11 @@ export interface SiderItemType {
 
 interface SiderItemsProps {
   item: SiderItemType
+  active?: boolean
 }
 
 export const SiderItems = (props: SiderItemsProps) => {
-  const [active, setActive] = useState(false)
+  const [active, setActive] = useState(props.active ?? false)
 
   const handleActive = (val: boolean) => setActive(!val)
 
@@ -22,23 +23,25 @@ export const SiderItems = (props: SiderItemsProps) => {
         <p className='sider__title' onClick={() => handleActive(active)}>
           {props.item.title}
         </p>
-        <div className='sider__list'>
-          {props.item.children.map((el) => {
-            return (
-              <React.Fragment key={el.id}>
-                <Item {...el} active={active} />
-              </React.Fragment>
-            )
-          })}
-        </div>
+        {active && (
+          <div className='sider__list'>
+            {props.item.children.map((el) => {
+              return (
+                <React.Fragment key={el.id}>
+                  <Item {...el} active={active} />
+                </React.Fragment>
+              )
+            })}
+          </div>
+        )}
       </div>
     )
   }
 
-  return <Item {...props.item} />
+  return <Item {...props.item} active={active} />
 }
 
-const Item = (props: { id: string; title: string; icons?: ReactNode; active?: boolean }) => {
+const Item = (props: SiderItemType & { active?: boolean }) => {
   return (
     <div className={`sider__item ${props.active && 'sider__item--show'}`}>
       {props.icons && <p className='sider__icon'>{props.icons}</p>}
