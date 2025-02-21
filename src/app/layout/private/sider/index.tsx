@@ -48,5 +48,10 @@ const arrays: SiderItemType[] = [
         ]
       }
     ]
+  },
+  {
+    id: '6',
+    icon: iconUtils.chart,
+    title: 'Sub'
   }
 ]

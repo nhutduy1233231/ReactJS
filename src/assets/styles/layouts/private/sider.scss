@@ -1,29 +1,40 @@
 .sider {
-  @apply h-screen !bg-[var(--sider-bg)] w-[240px];
-  @apply text-[var(--sider-color)] text-[1.6rem];
+  height: 100vh;
+  background-color: var(--sider-bg);
+  width: 240px;
+  color: var(--sider-color);
+  font-size: 1.6rem;
 
   .sider__item {
-    @apply min-h-[4rem] flex cursor-pointer;
-    @apply items-center;
+    cursor: pointer;
+    min-height: 4rem;
+    display: flex;
+    align-items: center;
 
     .sider__icon {
-      @apply w-[2rem] h-[2rem] mx-[1rem];
+      width: 2rem;
+      height: 2rem;
+      margin-left: 1rem;
+      margin-right: 1rem;
     }
     .sider__title {
-      @apply ml-[1rem] flex-1 break-all;
+      flex: 1;
+      word-break: break-all;
+      margin-left: 1rem;
     }
   }
   .sider__items {
     .sider__list {
-      @apply hidden;
+      display: none;
       .sider__item {
         transform: translateY(-20px);
         animation: slideDown 0.5s ease-out forwards;
       }
       &.sider__list--show {
-        @apply block;
+        display: block;
         .sider__item {
-          @apply flex opacity-[1];
+          display: flex;
+          opacity: 1;
           transform: translateY(0);
         }
       }
