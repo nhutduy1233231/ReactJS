@@ -1,4 +1,5 @@
 import { ReactNode, useMemo } from 'react'
+import { useSiderContext } from '~/app/layout/private/sider/Context/SiderContext'
 import { SiderCommonProps, SiderItemType, siderLevel, siderMode } from '~/app/layout/private/sider/SiderType'
 
 interface ItemProps extends SiderItemType, SiderCommonProps {
@@ -6,13 +7,15 @@ interface ItemProps extends SiderItemType, SiderCommonProps {
 }
 
 export const Item = (props: ItemProps) => {
+  const { mode } = useSiderContext()
+
   const level = useMemo(() => {
-    if (props.mode == siderMode.Vertical) {
+    if (mode == siderMode.Vertical) {
       return 0
     }
 
     return props.level * siderLevel.range + 'rem'
-  }, [props.level, props.mode])
+  }, [props.level, mode])
 
   return (
     <div className={`sider__item sider__item--${props.level} `} style={{ paddingLeft: level }} onClick={props.onClick}>

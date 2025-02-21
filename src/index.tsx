@@ -4,9 +4,11 @@ import '~styles/tailwind.scss'
 
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { Provider } from 'react-redux'
 import { Route, BrowserRouter as Router, Routes } from 'react-router'
 import ConfigProvider from '~/app/layout/configProvider'
 import PrivateLayout from '~/app/layout/private'
+import store from '~/store'
 import { envSettings } from './constants/enviroment'
 
 const EXAMPLE_ROUTER = [
@@ -24,14 +26,16 @@ const EXAMPLE_ROUTER = [
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <ConfigProvider>
-      <Router basename={envSettings.baseUrl}>
-        <Routes>
-          {EXAMPLE_ROUTER.map((el) => {
-            return <Route key={el.path} path={el.path} element={el.element} />
-          })}
-        </Routes>
-      </Router>
-    </ConfigProvider>
+    <Provider store={store}>
+      <ConfigProvider>
+        <Router basename={envSettings.baseUrl}>
+          <Routes>
+            {EXAMPLE_ROUTER.map((el) => {
+              return <Route key={el.path} path={el.path} element={el.element} />
+            })}
+          </Routes>
+        </Router>
+      </ConfigProvider>
+    </Provider>
   </React.StrictMode>
 )

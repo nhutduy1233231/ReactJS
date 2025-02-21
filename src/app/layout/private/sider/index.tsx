@@ -1,21 +1,35 @@
+import '~/assets/styles/layouts/private/sider.scss'
+
 import React from 'react'
+import { SiderContext } from '~/app/layout/private/sider/Context/SiderContext'
 import { SiderItems } from '~/app/layout/private/sider/SiderItems'
 import { SiderItemType, siderLevel, siderMode } from '~/app/layout/private/sider/SiderType'
-import '~/assets/styles/layouts/private/sider.scss'
 import { iconUtils } from '~/utils/iconUtils'
 
 const SiderComp = () => {
   const mode = siderMode.Horizontal
+
+  const handleSelect = (key: string) => {
+    console.log(key)
+  }
+
   return (
-    <div className={`sider ${mode}`}>
-      {arrays.map((el) => {
-        return (
-          <React.Fragment key={el.id}>
-            <SiderItems values={el} mode={mode} level={siderLevel.level} />
-          </React.Fragment>
-        )
-      })}
-    </div>
+    <SiderContext.Provider
+      value={{
+        mode: mode,
+        onSelect: handleSelect
+      }}
+    >
+      <div className={`sider ${mode}`}>
+        {arrays.map((el) => {
+          return (
+            <React.Fragment key={el.id}>
+              <SiderItems values={el} level={siderLevel.level} />
+            </React.Fragment>
+          )
+        })}
+      </div>
+    </SiderContext.Provider>
   )
 }
 

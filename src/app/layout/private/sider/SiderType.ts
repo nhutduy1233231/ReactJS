@@ -1,7 +1,6 @@
 import { ReactNode } from 'react'
 export interface SiderCommonProps {
   level: number
-  mode: siderMode
 }
 export interface SiderItemType {
   id: string

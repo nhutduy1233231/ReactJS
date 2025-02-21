@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useSiderContext } from '~/app/layout/private/sider/Context/SiderContext'
 import { Item } from '~/app/layout/private/sider/Item'
 import { SiderItems } from '~/app/layout/private/sider/SiderItems'
 import { SiderCommonProps, SiderItemType, siderMode } from '~/app/layout/private/sider/SiderType'
@@ -8,10 +9,11 @@ interface ItemsProps extends Omit<SiderItemType, 'items'>, SiderCommonProps {
 }
 
 export const Items = (props: ItemsProps) => {
+  const { mode } = useSiderContext()
   const [show, setShow] = useState(false)
 
   const handleShow = (val: boolean) => {
-    if (props.mode != siderMode.Vertical) setShow(!val)
+    if (mode != siderMode.Vertical) setShow(!val)
   }
 
   return (
@@ -21,7 +23,7 @@ export const Items = (props: ItemsProps) => {
         {props.items.map((el) => {
           return (
             <React.Fragment key={el.id}>
-              <SiderItems values={el} level={props.level + 1} mode={props.mode} />
+              <SiderItems values={el} level={props.level + 1} />
             </React.Fragment>
           )
         })}
