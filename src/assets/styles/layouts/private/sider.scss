@@ -1,16 +1,18 @@
 .sider {
-  height: 100vh;
   background-color: var(--sider-bg);
-  width: 240px;
+  height: 100vh;
+  width: 24rem;
   color: var(--sider-color);
   font-size: 1.6rem;
 
   .sider__item {
     cursor: pointer;
-    min-height: 4rem;
     display: flex;
+    width: 24rem;
+    min-height: 4rem;
     align-items: center;
     border-bottom: 1px solid var(--sider-bg);
+    background-color: var(--sider-bg);
 
     .sider__icon {
       width: 2rem;
@@ -27,17 +29,75 @@
       background-color: var(--sider-bg-active);
     }
   }
-  .sider__items {
-    .sider__list {
-      display: none;
+
+  .sider__items .sider__list {
+    display: none;
+    opacity: 0;
+  }
+
+  &.horizontal {
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--siedr-scrollbar-thumb);
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: var(--siedr-scrollbar-thumb-hover);
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: var(--sider-scrollbar-track);
+    }
+
+    .sider__items .sider__list {
       transform: translateY(-20px);
       animation: siderDown 0.3s ease-out forwards;
-      opacity: 0;
       &.sider__list--show {
         display: flex;
         flex-direction: column;
         opacity: 1;
         transform: translateY(0);
+      }
+    }
+  }
+
+  &.vertical {
+    .sider__items {
+      position: relative;
+      .sider__list {
+        position: absolute;
+        right: -24rem;
+        top: 0;
+        z-index: 1;
+        transform: translateX(-20px);
+        animation: siderLeftToRight 0.3s ease-out forwards;
+      }
+      &.sider__items--0:hover .sider__list--0,
+      &.sider__items--1:hover .sider__list--1,
+      &.sider__items--2:hover .sider__list--2 {
+        display: flex;
+        flex-direction: column;
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    &.collapsed {
+      width: 4rem;
+      .sider__item--0 {
+        width: 4rem;
+        .sider__title {
+          display: none;
+        }
       }
     }
   }
@@ -54,5 +114,19 @@
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes siderLeftToRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }

@@ -1,5 +1,8 @@
 import { ReactNode } from 'react'
-
+export interface SiderCommonProps {
+  level: number
+  mode: siderMode
+}
 export interface SiderItemType {
   id: string
   icon?: ReactNode
@@ -14,6 +17,5 @@ export enum siderMode {
 
 export const siderLevel = {
   level: 0,
-  // 1rem = 10px
-  range: 1.5
+  range: 1.5 // 1rem = 10px
 }

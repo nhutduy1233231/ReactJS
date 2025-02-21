@@ -5,12 +5,13 @@ import '~/assets/styles/layouts/private/sider.scss'
 import { iconUtils } from '~/utils/iconUtils'
 
 const SiderComp = () => {
+  const mode = siderMode.Horizontal
   return (
-    <div className='sider'>
+    <div className={`sider ${mode}`}>
       {arrays.map((el) => {
         return (
           <React.Fragment key={el.id}>
-            <SiderItems values={el} mode={siderMode.Horizontal} level={siderLevel.level} />
+            <SiderItems values={el} mode={mode} level={siderLevel.level} />
           </React.Fragment>
         )
       })}

@@ -10,9 +10,7 @@ interface PrivateLayoutProps {
 const PrivateLayout = (props: PrivateLayoutProps) => {
   return (
     <div className='w-full h-screen flex'>
-      <div className='sider'>
-        <SiderComp />
-      </div>
+      <SiderComp />
       <div className='flex-1 overflow-auto'>
         <div className='header sticky top-0'>
           <Header className='!p-0 !bg-[var(--header-bg)]'></Header>
