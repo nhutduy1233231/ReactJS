@@ -10,6 +10,7 @@
     min-height: 4rem;
     display: flex;
     align-items: center;
+    border-bottom: 1px solid var(--sider-bg);
 
     .sider__icon {
       width: 2rem;
@@ -20,33 +21,38 @@
     .sider__title {
       flex: 1;
       word-break: break-all;
-      margin-left: 1rem;
+    }
+    &:hover {
+      border-bottom: 1px solid var(--sider-hover);
+      background-color: var(--sider-bg-active);
     }
   }
   .sider__items {
     .sider__list {
       display: none;
-      .sider__item {
-        transform: translateY(-20px);
-        animation: slideDown 0.5s ease-out forwards;
-      }
+      transform: translateY(-20px);
+      animation: siderDown 0.3s ease-out forwards;
+      opacity: 0;
       &.sider__list--show {
-        display: block;
-        .sider__item {
-          display: flex;
-          opacity: 1;
-          transform: translateY(0);
-        }
+        display: flex;
+        flex-direction: column;
+        opacity: 1;
+        transform: translateY(0);
       }
     }
   }
 }
 
-@keyframes slideDown {
+@keyframes siderDown {
   0% {
+    opacity: 0;
     transform: translateY(-20px);
   }
+  50% {
+    opacity: 0.5;
+  }
   100% {
+    opacity: 1;
     transform: translateY(0);
   }
 }

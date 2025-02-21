@@ -15,7 +15,7 @@ const PrivateLayout = (props: PrivateLayoutProps) => {
       </div>
       <div className='flex-1 overflow-auto'>
         <div className='header sticky top-0'>
-          <Header className='!p-0 !bg-[var(--bg)]'></Header>
+          <Header className='!p-0 !bg-[var(--header-bg)]'></Header>
         </div>
         <div className='m-6 p-6 border border-[var(--placeholder)] rounded-[8px] bg-[var(--bg)]'>{props.children}</div>
       </div>

@@ -1,46 +1,48 @@
-import React, { ReactNode, useState } from 'react'
-
-export interface SiderItemType {
-  id: string
-  icon?: ReactNode
-  title: string
-  items?: SiderItemType[]
-}
+import React, { useMemo, useState } from 'react'
+import { SiderItemType, siderLevel, siderMode } from '~/app/layout/private/sider/SiderType'
 
 interface SiderItemsProps {
-  item: SiderItemType
-  active?: boolean
-}
-
-interface ItemsType extends Omit<SiderItemType, 'items'> {
-  items: SiderItemType[]
-}
-
-interface ItemProps extends SiderItemType {
-  onClick?: () => void
+  values: SiderItemType
+  level: number
+  mode?: siderMode
 }
 
 export const SiderItems = (props: SiderItemsProps) => {
-  if (props.item.items && props.item.items.length > 0) {
-    return <Items {...props.item} items={props.item.items!} />
+  if (props.values.items && props.values.items.length > 0) {
+    return (
+      <Items
+        {...props.values}
+        mode={props.mode ?? siderMode.Horizontal}
+        items={props.values.items!}
+        level={props.level}
+      />
+    )
   }
 
-  return <Item {...props.item} />
+  return <Item {...props.values} level={props.level} />
 }
 
-const Items = (props: ItemsType) => {
-  const [show, setShow] = useState(false)
+interface ItemsProps extends Omit<SiderItemType, 'items'> {
+  items: SiderItemType[]
+  level: number
+  mode: siderMode
+}
 
-  const handleActive = (val: boolean) => setShow(!val)
+const Items = (props: ItemsProps) => {
+  const [show, setShow] = useState(props.mode == siderMode.Vertical)
+
+  const handleShow = (val: boolean) => {
+    props.mode != siderMode.Vertical && setShow(!val)
+  }
 
   return (
-    <div className='sider__items'>
-      <Item {...props} onClick={() => handleActive(show)} />
+    <div className={`sider__items ${props.mode}`}>
+      <Item {...props} onClick={() => handleShow(show)} />
       <div className={`sider__list ${show && 'sider__list--show'}`}>
         {props.items.map((el) => {
           return (
             <React.Fragment key={el.id}>
-              <SiderItems item={el} />
+              <SiderItems values={el} level={props.level + 1} mode={props.mode} />
             </React.Fragment>
           )
         })}
@@ -49,9 +51,18 @@ const Items = (props: ItemsType) => {
   )
 }
 
+interface ItemProps extends SiderItemType {
+  onClick?: () => void
+  level: number
+}
+
 const Item = (props: ItemProps) => {
+  const level = useMemo(() => {
+    return props.level * siderLevel.range + 'rem'
+  }, [props.level])
+
   return (
-    <div className='sider__item' onClick={props.onClick}>
+    <div className='sider__item' style={{ paddingLeft: level }} onClick={props.onClick}>
       {props.icon && <p className='sider__icon'>{props.icon}</p>}
       <span className='sider__title'>{props.title}</span>
     </div>

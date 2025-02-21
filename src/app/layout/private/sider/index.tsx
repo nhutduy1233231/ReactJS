@@ -1,5 +1,6 @@
 import React from 'react'
-import { SiderItems, SiderItemType } from '~/app/layout/private/sider/SiderItems'
+import { SiderItems } from '~/app/layout/private/sider/SiderItems'
+import { SiderItemType, siderLevel, siderMode } from '~/app/layout/private/sider/SiderType'
 import '~/assets/styles/layouts/private/sider.scss'
 import { iconUtils } from '~/utils/iconUtils'
 
@@ -9,7 +10,7 @@ const SiderComp = () => {
       {arrays.map((el) => {
         return (
           <React.Fragment key={el.id}>
-            <SiderItems item={el} />
+            <SiderItems values={el} mode={siderMode.Horizontal} level={siderLevel.level} />
           </React.Fragment>
         )
       })}
