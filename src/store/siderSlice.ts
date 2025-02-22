@@ -7,20 +7,22 @@ interface siderSliceType {
 
 const initialState: siderSliceType = {
   openKeys: [],
-  key: '123'
+  key: ''
 }
 
 const siderSlice = createSlice({
   name: 'siderSlice',
   initialState: initialState,
   reducers: {
-    selectKeys: (state, action: { payload: { openKeys: []; key: undefined } }) => {
-      state.openKeys = action.payload.openKeys
-      state.key = action.payload.key
+    selectKeys: (state, action: { payload: string }) => {
+      state.key = action.payload
+    },
+    selectOpenKeys: (state, action: { payload: string[] }) => {
+      state.openKeys = action.payload
     }
   }
 })
 
-export const { selectKeys } = siderSlice.actions
+export const { selectKeys, selectOpenKeys } = siderSlice.actions
 
 export default siderSlice.reducer

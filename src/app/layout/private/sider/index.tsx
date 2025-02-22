@@ -1,17 +1,31 @@
 import '~/assets/styles/layouts/private/sider.scss'
 
-import React from 'react'
-import { SiderContext } from '~/app/layout/private/sider/Context/SiderContext'
+import React, { useCallback, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { SiderContext } from '~/app/layout/private/sider/context/SiderContext'
 import { SiderItems } from '~/app/layout/private/sider/SiderItems'
 import { SiderItemType, siderLevel, siderMode } from '~/app/layout/private/sider/SiderType'
+import { findParentKeys } from '~/helper/common'
+import { useSelector } from '~/hook/Selector'
+import { selectKeys, selectOpenKeys } from '~/store/siderSlice'
 import { iconUtils } from '~/utils/iconUtils'
 
-const SiderComp = () => {
-  const mode = siderMode.Horizontal
+const mode = siderMode.Horizontal
 
-  const handleSelect = (key: string) => {
-    console.log(key)
-  }
+const SiderComp = () => {
+  const dispatch = useDispatch()
+  const { key } = useSelector((state) => state.siderSlice)
+
+  useEffect(() => {
+    if (key && arrays.length > 0) {
+      const openKeys = findParentKeys(arrays, key)
+      dispatch(selectOpenKeys(openKeys))
+    }
+  }, [key, arrays])
+
+  const handleSelect = useCallback((key: string) => {
+    dispatch(selectKeys(key))
+  }, [])
 
   return (
     <SiderContext.Provider
@@ -20,7 +34,7 @@ const SiderComp = () => {
         onSelect: handleSelect
       }}
     >
-      <div className={`sider ${mode}`}>
+      <section className={`sider ${mode}`}>
         {arrays.map((el) => {
           return (
             <React.Fragment key={el.id}>
@@ -28,7 +42,7 @@ const SiderComp = () => {
             </React.Fragment>
           )
         })}
-      </div>
+      </section>
     </SiderContext.Provider>
   )
 }

@@ -1,16 +1,23 @@
-import React, { useState } from 'react'
-import { useSiderContext } from '~/app/layout/private/sider/Context/SiderContext'
+import React, { useEffect, useState } from 'react'
+import { useSiderContext } from '~/app/layout/private/sider/context/SiderContext'
 import { Item } from '~/app/layout/private/sider/Item'
 import { SiderItems } from '~/app/layout/private/sider/SiderItems'
 import { SiderCommonProps, SiderItemType, siderMode } from '~/app/layout/private/sider/SiderType'
+import { useSelector } from '~/hook/Selector'
 
 interface ItemsProps extends Omit<SiderItemType, 'items'>, SiderCommonProps {
   items: SiderItemType[]
 }
 
 export const Items = (props: ItemsProps) => {
+  const { openKeys } = useSelector((state) => state.siderSlice) ?? {}
   const { mode } = useSiderContext()
   const [show, setShow] = useState(false)
+
+  useEffect(() => {
+    const isValid = openKeys.some((el) => el == props.id)
+    setShow(isValid)
+  }, [openKeys, props.id])
 
   const handleShow = (val: boolean) => {
     if (mode != siderMode.Vertical) setShow(!val)

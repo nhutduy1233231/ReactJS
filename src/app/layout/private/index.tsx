@@ -9,7 +9,7 @@ interface PrivateLayoutProps {
 
 const PrivateLayout = (props: PrivateLayoutProps) => {
   return (
-    <div className='w-full h-screen flex'>
+    <div className='w-full h-screen flex overflow-x-hidden'>
       <SiderComp />
       <div className='flex-1 overflow-auto'>
         <div className='header sticky top-0'>

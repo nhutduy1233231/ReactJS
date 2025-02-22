@@ -1,13 +1,15 @@
 import { ReactNode, useMemo } from 'react'
-import { useSiderContext } from '~/app/layout/private/sider/Context/SiderContext'
+import { useSiderContext } from '~/app/layout/private/sider/context/SiderContext'
 import { SiderCommonProps, SiderItemType, siderLevel, siderMode } from '~/app/layout/private/sider/SiderType'
+import { useSelector } from '~/hook/Selector'
 
 interface ItemProps extends SiderItemType, SiderCommonProps {
   onClick?: () => void
 }
 
 export const Item = (props: ItemProps) => {
-  const { mode } = useSiderContext()
+  const { mode, onSelect } = useSiderContext()
+  const key = useSelector((state) => state.siderSlice.key) ?? ''
 
   const level = useMemo(() => {
     if (mode == siderMode.Vertical) {
@@ -17,8 +19,20 @@ export const Item = (props: ItemProps) => {
     return props.level * siderLevel.range + 'rem'
   }, [props.level, mode])
 
+  const handleSelect = (key: string) => {
+    if (props.onClick) {
+      props.onClick()
+    } else {
+      onSelect(key)
+    }
+  }
+
   return (
-    <div className={`sider__item sider__item--${props.level} `} style={{ paddingLeft: level }} onClick={props.onClick}>
+    <div
+      className={`sider__item sider__item--${props.level} ${key == props.id ? 'sider__item--active' : ''}`}
+      style={{ paddingLeft: level }}
+      onClick={() => handleSelect(props.id)}
+    >
       <Icons icon={props.icon} level={props.level} />
       <span className='sider__title'>{props.title}</span>
     </div>

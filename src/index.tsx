@@ -8,6 +8,7 @@ import { Provider } from 'react-redux'
 import { Route, BrowserRouter as Router, Routes } from 'react-router'
 import ConfigProvider from '~/app/layout/configProvider'
 import PrivateLayout from '~/app/layout/private'
+import { Example } from '~/Example'
 import store from '~/store'
 import { envSettings } from './constants/enviroment'
 
@@ -18,6 +19,7 @@ const EXAMPLE_ROUTER = [
       <PrivateLayout>
         <h1 className='text-3xl font-bold underline text-[#fff000]'>Hello world!</h1>
         <p className='text-blue-600 dark:text-sky-400'>The quick brown fox...</p>
+        <Example />
       </PrivateLayout>
     )
   },
