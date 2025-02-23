@@ -8,6 +8,7 @@
     "@tailwindcss/postcss": "^4.0.6",
     "@types/antd": "^1.0.4",
     "antd": "^5.24.0",
+    "axios": "^1.7.9",
     "normalize.css": "^8.0.1",
     "postcss": "^8.5.2",
     "postcss-loader": "^8.1.1",
