@@ -10,6 +10,7 @@ const ESLintPlugin = require('eslint-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const webpack = require('webpack')
+const TerserPlugin = require('terser-webpack-plugin')
 
 // Cái dòng này giúp Editor gợi ý được các giá trị cho dòng code config ngay phía dưới nó
 // (giống như đang dùng Typescript vậy đó 😉)
@@ -135,18 +136,18 @@ module.exports = (env, argv) => {
     config.plugins = [
       ...config.plugins,
       new webpack.ProgressPlugin(), // Hiển thị % khi build
-      // Nén brotli css và js nhưng không hiểu sao chỉ có js được nén 🥲
+
       new CompressionPlugin({
-        test: /\.(css|js|html|svg)$/,
-        filename: '[path][base].br',
-        algorithm: 'brotliCompress',
-        compressionOptions: { level: 11 }
+        test: /\.(css|js|html|svg)$/, // Các file được nén
+        filename: '[path][base].br', // Tạo file .br
+        algorithm: 'brotliCompress', // Dùng thuật toán Brotli
+        compressionOptions: { level: 11 } // Mức nén cao nhất
       }),
       new CompressionPlugin({
-        test: /\.(css|js|html|svg)$/,
-        filename: '[path][base].gz',
-        algorithm: 'gzip',
-        compressionOptions: { level: 9 }
+        test: /\.(css|js|html|svg)$/, // Các file được nén
+        filename: '[path][base].gz', // Tạo file .gz
+        algorithm: 'gzip', // Dùng thuật toán Gzip
+        compressionOptions: { level: 9 } // Mức nén cao nhất
       }),
       new CleanWebpackPlugin() // Dọn dẹp thư mục build trước đó để chuẩn bị cho bản build hiện tại
     ]
@@ -154,9 +155,15 @@ module.exports = (env, argv) => {
       config.plugins = [...config.plugins, new BundleAnalyzerPlugin()]
     }
     config.optimization = {
+      minimize: true,
       minimizer: [
-        `...`, // Cú pháp kế thừa bộ minimizers mặc định trong webpack 5 (i.e. `terser-webpack-plugin`)
-        new CssMinimizerPlugin() // minify css
+        new TerserPlugin({
+          parallel: true,
+          terserOptions: {
+            compress: { drop_console: true } // Loại bỏ console.log()
+          }
+        }),
+        new CssMinimizerPlugin()
       ],
       splitChunks: {
         chunks: 'all',

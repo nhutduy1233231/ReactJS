@@ -59,9 +59,6 @@ const BarChart = (props: BarChartProps) => {
 
   const options: ChartOptions<'bar'> = {
     responsive: true,
-    layout: {
-      padding: 10
-    },
     plugins: {
       legend: {
         position: undefined

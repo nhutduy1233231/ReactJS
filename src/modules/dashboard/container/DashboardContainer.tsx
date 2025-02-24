@@ -38,7 +38,7 @@ const DashBoardContainer = () => {
   }, [])
 
   return (
-    <div style={{ maxWidth: '800px', margin: 'auto' }}>
+    <div style={{ maxWidth: '880px', margin: 'auto' }}>
       <BarChart labels={dateUltils.getAllDatesInMonth('2025/01')} datasets={[generateData()]} />
     </div>
   )
