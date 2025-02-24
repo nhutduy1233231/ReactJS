@@ -19,11 +19,11 @@ export const Item = (props: ItemProps) => {
     return props.level * siderLevel.range + 'rem'
   }, [props.level, mode])
 
-  const handleSelect = (key: string) => {
+  const handleSelect = (key: string, url: string) => {
     if (props.onClick) {
       props.onClick()
     } else {
-      onSelect(key)
+      onSelect(key, url)
     }
   }
 
@@ -31,7 +31,7 @@ export const Item = (props: ItemProps) => {
     <div
       className={`sider__item sider__item--${props.level} ${key == props.id ? 'sider__item--active' : ''}`}
       style={{ paddingLeft: level }}
-      onClick={() => handleSelect(props.id)}
+      onClick={() => handleSelect(props.id, props.url ?? '')}
     >
       <Icons icon={props.icon} level={props.level} />
       <span className='sider__title'>{props.title}</span>

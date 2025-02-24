@@ -10,6 +10,7 @@ interface HeaderProps {
 export const useHeader = (props: HeaderProps) => {
   const dispatch = useDispatch()
   useEffect(() => {
+    console.log('props.title', props.title)
     document.title = props.title
 
     return () => {

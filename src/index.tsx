@@ -9,6 +9,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router'
 import ConfigProvider from '~/app/layout/configProvider'
 import PrivateLayout from '~/app/layout/private'
 import { Example } from '~/Example'
+import { dashboardRouter } from '~/modules/dashboard/router/dashboardRouter'
 import store from '~/store'
 import { envSettings } from './constants/enviroment'
 
@@ -33,6 +34,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Router basename={envSettings.baseUrl}>
           <Routes>
             {EXAMPLE_ROUTER.map((el) => {
+              return <Route key={el.path} path={el.path} element={el.element} />
+            })}
+            {dashboardRouter.map((el) => {
               return <Route key={el.path} path={el.path} element={el.element} />
             })}
           </Routes>

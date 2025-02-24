@@ -8,8 +8,8 @@ export enum FormType {
 
 export const SiderContext = createContext({
   mode: siderMode.Horizontal,
-  onSelect: (key: string) => {
-    console.log(key)
+  onSelect: (key: string, url?: string) => {
+    console.log(key, url)
   }
 })
 

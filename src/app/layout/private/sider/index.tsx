@@ -6,7 +6,9 @@ import { SiderContext } from '~/app/layout/private/sider/context/SiderContext'
 import { SiderItems } from '~/app/layout/private/sider/SiderItems'
 import { SiderItemType, siderLevel, siderMode } from '~/app/layout/private/sider/SiderType'
 import { findParentKeys } from '~/helper/common'
+import { useRouter } from '~/hook/Router'
 import { useSelector } from '~/hook/Selector'
+import { dashboardSiteMap } from '~/modules/dashboard/router/dashboardSiteMap'
 import { selectKeys, selectOpenKeys } from '~/store/siderSlice'
 import { iconUtils } from '~/utils/iconUtils'
 
@@ -14,6 +16,7 @@ const mode = siderMode.Horizontal
 
 const SiderComp = () => {
   const dispatch = useDispatch()
+  const router = useRouter()
   const { key } = useSelector((state) => state.siderSlice)
 
   useEffect(() => {
@@ -23,8 +26,11 @@ const SiderComp = () => {
     }
   }, [key, arrays])
 
-  const handleSelect = useCallback((key: string) => {
+  const handleSelect = useCallback((key: string, url?: string) => {
     dispatch(selectKeys(key))
+    if (url && url != '') {
+      router.push(url)
+    }
   }, [])
 
   return (
@@ -53,7 +59,8 @@ const arrays: SiderItemType[] = [
   {
     id: '1',
     icon: iconUtils.chart,
-    title: 'Dashboard'
+    title: 'Dashboard',
+    url: dashboardSiteMap.dashboard
   },
   {
     id: '2',

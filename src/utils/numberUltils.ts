@@ -11,5 +11,9 @@ export const numberUtils = {
     if (!isValid) return -1
 
     return parseInt(`${num}`)
+  },
+
+  getRandomNumber: (min: number, max: number) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min
   }
 }

@@ -7,6 +7,7 @@ export interface SiderItemType {
   icon?: ReactNode
   title: string
   items?: SiderItemType[]
+  url?: string
 }
 
 export enum siderMode {

@@ -136,7 +136,18 @@ module.exports = (env, argv) => {
       ...config.plugins,
       new webpack.ProgressPlugin(), // Hiển thị % khi build
       // Nén brotli css và js nhưng không hiểu sao chỉ có js được nén 🥲
-      new CompressionPlugin({ test: /\.(css|js)$/, algorithm: 'brotliCompress' }),
+      new CompressionPlugin({
+        test: /\.(css|js|html|svg)$/,
+        filename: '[path][base].br',
+        algorithm: 'brotliCompress',
+        compressionOptions: { level: 11 }
+      }),
+      new CompressionPlugin({
+        test: /\.(css|js|html|svg)$/,
+        filename: '[path][base].gz',
+        algorithm: 'gzip',
+        compressionOptions: { level: 9 }
+      }),
       new CleanWebpackPlugin() // Dọn dẹp thư mục build trước đó để chuẩn bị cho bản build hiện tại
     ]
     if (isAnalyze) {
@@ -146,7 +157,27 @@ module.exports = (env, argv) => {
       minimizer: [
         `...`, // Cú pháp kế thừa bộ minimizers mặc định trong webpack 5 (i.e. `terser-webpack-plugin`)
         new CssMinimizerPlugin() // minify css
-      ]
+      ],
+      splitChunks: {
+        chunks: 'all',
+        minSize: 20000,
+        maxSize: 200000, // Giới hạn tối đa bundle 200KB (tăng lên so với 100KB để tránh quá nhiều file nhỏ)
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+            enforce: true
+          },
+          common: {
+            test: /[\\/]src[\\/](components|utils|helper)[\\/]/,
+            name: 'commons',
+            minChunks: 2,
+            chunks: 'all',
+            priority: 10
+          }
+        }
+      }
     }
   }
   return config
